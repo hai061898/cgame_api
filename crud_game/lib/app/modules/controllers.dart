@@ -4,11 +4,12 @@ import 'dart:math';
 import 'package:crud_game/app/data/models/data_game.dart';
 import 'package:crud_game/app/data/models/select_game.dart';
 import 'package:crud_game/app/data/repository/repository.dart';
+import 'package:crud_game/app/modules/edit_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
-class MyController extends GetxController {
+class GameController extends GetxController {
   RxBool loading = false.obs;
   Map<String, dynamic>? body;
   RxList<DataGame> dataGame = <DataGame>[].obs;
@@ -160,6 +161,12 @@ class MyController extends GetxController {
     }).catchError((onError) {
       printError();
     });
+  }
+
+
+    void toEditPage()async{
+    selectGame(id.value);
+    Get.to(()=>const EditGameScreen());
   }
 
 }
